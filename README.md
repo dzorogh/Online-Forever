@@ -67,9 +67,13 @@ STATUS=online
 CUSTOM_STATUS=Hey!
 USE_EMOJI=false
 PYTHONUNBUFFERED=1
+LOG_LEVEL=info
+HEARTBEAT_LOG_INTERVAL=60
+RECONNECT_DELAY=5
 ```
 
 Supported `STATUS` values: `online`, `idle`, `dnd`.
+Set `LOG_LEVEL=debug` for heartbeat send/ack details. `HEARTBEAT_LOG_INTERVAL` controls how often the app writes an "alive" log line.
 
 If Dokploy health checks expect an HTTP port, disable them for this service. The container should be kept alive by the process and restarted with an `always` or `unless-stopped` restart policy.
 
