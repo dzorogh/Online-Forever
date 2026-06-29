@@ -1,12 +1,14 @@
 import asyncio
 import json
+import os
 import requests
+import time
 import websockets
 
-TOKEN = "Add your token here"
-STATUS = "online"  # online / dnd / idle
-CUSTOM_STATUS = "Hey!"  # Leave empty if you don't want a custom status
-USE_EMOJI = False
+TOKEN = os.environ["DISCORD_TOKEN"]
+STATUS = os.getenv("STATUS", "online")  # online / dnd / idle
+CUSTOM_STATUS = os.getenv("CUSTOM_STATUS", "Hey!")  # Leave empty if you don't want a custom status
+USE_EMOJI = os.getenv("USE_EMOJI", "false").lower() in {"1", "true", "yes", "on"}
 
 headers = {"Authorization": TOKEN}
 
@@ -78,4 +80,4 @@ async def discord_gateway():
 
 while True:
     asyncio.run(discord_gateway())
-    asyncio.sleep(5)
+    time.sleep(5)

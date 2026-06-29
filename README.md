@@ -52,6 +52,27 @@ You will need an user token inorder to use this code. You can obtain it by doing
 6. Open command prompt inside the folder and run `pip install -r requirements.txt`
 7. Once the packages are downloaded, either double-click the `main.py` file in order to run it or open command prompt and run `python main.py`
 
+## 🚀 Dokploy
+
+Deploy this project as a background application/worker. It does not expose an HTTP port.
+
+1. Create an application service in Dokploy from this Git repository.
+2. Use Dockerfile build mode with `./Dockerfile`.
+3. Do not configure a domain or app port for this service.
+4. Add environment variables:
+
+```env
+DISCORD_TOKEN=your_token_here
+STATUS=online
+CUSTOM_STATUS=Hey!
+USE_EMOJI=false
+PYTHONUNBUFFERED=1
+```
+
+Supported `STATUS` values: `online`, `idle`, `dnd`.
+
+If Dokploy health checks expect an HTTP port, disable them for this service. The container should be kept alive by the process and restarted with an `always` or `unless-stopped` restart policy.
+
 ---
 
 <p align="center">Online Forever is licensed under <a href="https://github.com/SealedSaucer/Online-Forever/blob/main/LICENSE">GNU General Public License</a> ❤️</p>
