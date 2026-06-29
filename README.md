@@ -70,10 +70,14 @@ PYTHONUNBUFFERED=1
 LOG_LEVEL=info
 HEARTBEAT_LOG_INTERVAL=60
 RECONNECT_DELAY=5
+TIMEZONE=Europe/Moscow
+ONLINE_START=09:30
+ONLINE_END=22:30
 ```
 
 Supported `STATUS` values: `online`, `idle`, `dnd`.
 Set `LOG_LEVEL=debug` for heartbeat send/ack details. `HEARTBEAT_LOG_INTERVAL` controls how often the app writes an "alive" log line.
+`ONLINE_START` and `ONLINE_END` define when the gateway connection should be active in the configured `TIMEZONE`. Outside that window, the app pauses its Discord Gateway connection instead of setting an invisible/offline presence, so your normal Discord client can control your real status.
 
 If Dokploy health checks expect an HTTP port, disable them for this service. The container should be kept alive by the process and restarted with an `always` or `unless-stopped` restart policy.
 
